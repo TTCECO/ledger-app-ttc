@@ -87,7 +87,7 @@ hash = sha3(msg_to_sign.decode())
 signature = KeyAPI.Signature(vrs=(int(v, 16), int(r, 16), int(s, 16)))
 pubkey = KeyAPI.PublicKey.recover_from_msg_hash(hash, signature)
 
-print("[INFO] Hash is: 0x", binascii.hexlify(hash).decode(), sep='');
+print("[INFO] Hash is: t0", binascii.hexlify(hash).decode(), sep='');
 print('{')
 print('  "address": "', pubkey.to_address(), '",', sep='')
 print('  "msg": "', args.message.decode(),'",', sep='')
