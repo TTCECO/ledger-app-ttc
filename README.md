@@ -24,7 +24,7 @@ To remove the app from the device do:
 
 
 ## Test
-you can test by python module ledgerblue,but you need to modify the path in ledger.py 
+you can test by python module ledgerblue, but you need to modify the path in ledger.py 
 ```$ "44'/718'/%d'/0/0"```
 
 
