@@ -57,4 +57,4 @@ offset = 1 + result[0]
 address = result[offset + 1: offset + 1 + result[offset]]
 
 print("Public key", binascii.hexlify(result[1: 1 + result[0]]).decode())
-print("Address 0x", address.decode(), sep='')
+print("Address t0", address.decode(), sep='')
