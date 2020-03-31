@@ -1,4 +1,4 @@
-# TTC wallet application for the Ledger Nano S and Ledger Blue
+# TTC wallet application for the Ledger Nano S
 
 ## Introduction
 This is the app for the [Ledger Nano S](https://www.ledgerwallet.com/products/ledger-nano-s) and [Ledger Blue](https://www.ledgerwallet.com/products/ledger-blue) that makes it possible sign any transaction for the ttc network.
