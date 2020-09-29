@@ -1,5 +1,5 @@
 /*******************************************************************************
-*   Ledger TTC App
+*   Ledger MARO App
 *   (c) 2016-2019 Ledger
 *
 *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,8 +17,8 @@
 
 #include <stdint.h>
 
-#include "ttcUstream.h"
-#include "ttcUtils.h"
+#include "maroUstream.h"
+#include "maroUtils.h"
 
 #define MAX_INT256 32
 #define MAX_ADDRESS 20

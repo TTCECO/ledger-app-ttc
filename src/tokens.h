@@ -1,5 +1,5 @@
 /*******************************************************************************
-*   Ledger Ethereum App
+*   Ledger MARO App
 *   (c) 2016-2019 Ledger
 *
 *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,11 +28,11 @@ typedef struct tokenDefinition_t {
 
 #ifdef HAVE_TOKENS_LIST
 
-#define NUM_TOKENS_TTC 5
+#define NUM_TOKENS_MARO 5
 
 
 
-extern tokenDefinition_t const TOKENS_TTC[NUM_TOKENS_TTC];
+extern tokenDefinition_t const TOKENS_MARO[NUM_TOKENS_MARO];
 
 #endif /* HAVE_TOKENS_LIST */
 

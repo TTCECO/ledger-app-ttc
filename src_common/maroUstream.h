@@ -1,5 +1,5 @@
 /*******************************************************************************
-*   Ledger TTC App
+*   Ledger MARO App
 *   (c) 2016-2019 Ledger
 *
 *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,8 +15,8 @@
 *  limitations under the License.
 ********************************************************************************/
 
-#ifndef _TTCUSTREAM_H_
-#define _TTCUSTREAM_H_
+#ifndef _MAROUSTREAM_H_
+#define _MAROUSTREAM_H_
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -102,4 +102,4 @@ parserStatus_e continueTx(txContext_t *context);
 void copyTxData(txContext_t *context, uint8_t *out, uint32_t length);
 uint8_t readTxByte(txContext_t *context);
 
-#endif /* _TTCUSTREAM_H_ */
+#endif /* _MAROUSTREAM_H_ */

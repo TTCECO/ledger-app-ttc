@@ -1,5 +1,5 @@
 /*******************************************************************************
-*   Ledger TTC App
+*   Ledger MARO App
 *   (c) 2016-2019 Ledger
 *
 *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,7 +18,7 @@
 #include <stdint.h>
 #include <string.h>
 
-#include "ttcUstream.h"
+#include "maroUstream.h"
 #include "uint256.h"
 
 static const unsigned char hex_digits[] = {'0', '1', '2', '3', '4', '5', '6', '7',

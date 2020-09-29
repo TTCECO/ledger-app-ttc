@@ -1,5 +1,5 @@
 #*******************************************************************************
-#   Ledger App
+#   Ledger MARO App
 #   (c) 2017 Ledger
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,13 +14,12 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 #*******************************************************************************
-
 ifeq ($(BOLOS_SDK),)
 $(error Environment variable BOLOS_SDK is not set)
 endif
 include $(BOLOS_SDK)/Makefile.defines
 
-DEFINES_LIB = USE_LIB_TTC
+DEFINES_LIB = USE_LIB_MARO
 APP_LOAD_PARAMS= --curve secp256k1 $(COMMON_LOAD_PARAMS)
 #Allow the app to use path 45 for multi-sig (see BIP45).
 APP_LOAD_PARAMS += --path "45'"
@@ -31,23 +30,23 @@ APPVERSION_M=1
 APPVERSION_N=1
 APPVERSION_P=1
 APPVERSION=$(APPVERSION_M).$(APPVERSION_N).$(APPVERSION_P)
-APP_LOAD_FLAGS= --appFlags 0x240 --dep TTC:$(APPVERSION)
+APP_LOAD_FLAGS= --appFlags 0x240 --dep MARO:$(APPVERSION)
 
 ifeq ($(CHAIN),)
-CHAIN=ttc
+CHAIN=maro
 endif
 
-ifeq ($(CHAIN),ttc)
+ifeq ($(CHAIN),maro)
 # Lock the application on its standard path for 1.5. Please complain if non compliant
 APP_LOAD_PARAMS += --path "44'/718'"
-DEFINES += CHAINID_UPCASE=\"TTC\" CHAINID_COINNAME=\"TTC\" CHAIN_KIND=CHAIN_KIND_TTC CHAIN_ID=8848
-APPNAME = "TTC"
+DEFINES += CHAINID_UPCASE=\"MARO\" CHAINID_COINNAME=\"MARO\" CHAIN_KIND=CHAIN_KIND_MARO CHAIN_ID=8848
+APPNAME = "MARO"
 DEFINES_LIB=
 APP_LOAD_FLAGS=--appFlags 0xa40
 
 else
 ifeq ($(filter clean,$(MAKECMDGOALS)),)
-$(error Unsupported CHAIN - use ttc)
+$(error Unsupported CHAIN - use maro)
 endif
 endif
 
@@ -81,7 +80,7 @@ DEFINES   += LEDGER_MAJOR_VERSION=$(APPVERSION_M) LEDGER_MINOR_VERSION=$(APPVERS
 
 # U2F
 DEFINES   += HAVE_U2F HAVE_IO_U2F
-DEFINES   += U2F_PROXY_MAGIC=\"TTC\"
+DEFINES   += U2F_PROXY_MAGIC=\"MARO\"
 DEFINES   += USB_SEGMENT_SIZE=64
 DEFINES   += BLE_SEGMENT_SIZE=32 #max MTU, min 20
 DEFINES   += UNUSED\(x\)=\(void\)x
@@ -190,4 +189,4 @@ include $(BOLOS_SDK)/Makefile.rules
 dep/%.d: %.c Makefile
 
 listvariants:
-	@echo VARIANTS CHAIN ttc 
+	@echo VARIANTS CHAIN maro

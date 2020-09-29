@@ -1,5 +1,5 @@
 /*******************************************************************************
-*   Ledger TTC App
+*   Ledger MARO App
 *   (c) 2016-2019 Ledger
 *
 *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,8 +16,8 @@
 ********************************************************************************/
 
 /**
- * @brief Utilities for an TTC Hardware Wallet logic
- * @file ttcUtils.h
+ * @brief Utilities for an MARO Hardware Wallet logic
+ * @file maroUtils.h
  * @author Ledger Firmware Team <hello@ledger.fr>
  * @version 1.0
  * @date 8th of March 2016
@@ -29,7 +29,7 @@
 
 #include "os.h"
 #include "cx.h"
-#include "ttcUtils.h"
+#include "maroUtils.h"
 #include "chainConfig.h"
 
 extern chain_config_t *chainConfig;
@@ -120,7 +120,7 @@ bool rlpDecodeLength(uint8_t *buffer, uint32_t bufferLength,
     return true;
 }
 
-void getTTCAddressFromKey(cx_ecfp_public_key_t *publicKey, uint8_t *out,
+void getMaroAddressFromKey(cx_ecfp_public_key_t *publicKey, uint8_t *out,
                                 cx_sha3_t *sha3Context) {
     uint8_t hashAddress[32];
     cx_keccak_init(sha3Context, 256);
@@ -155,15 +155,15 @@ char convertDigit(uint8_t *address, uint8_t index, uint8_t *hash) {
     }
 }
 
-void getTTCAddressStringFromKey(cx_ecfp_public_key_t *publicKey, uint8_t *out,
+void getMaroAddressStringFromKey(cx_ecfp_public_key_t *publicKey, uint8_t *out,
                                 cx_sha3_t *sha3Context) {
     uint8_t hashAddress[32];
     cx_keccak_init(sha3Context, 256);
     cx_hash((cx_hash_t*)sha3Context, CX_LAST, publicKey->W + 1, 64, hashAddress, 32);
-    getTTCAddressStringFromBinary(hashAddress + 12, out, sha3Context);
+    getMaroAddressStringFromBinary(hashAddress + 12, out, sha3Context);
 }
 
-void getTTCAddressStringFromBinary(uint8_t *address, uint8_t *out,
+void getMaroAddressStringFromBinary(uint8_t *address, uint8_t *out,
                                    cx_sha3_t *sha3Context) {
     uint8_t hashChecksum[32];
     uint8_t i;
@@ -179,15 +179,15 @@ void getTTCAddressStringFromBinary(uint8_t *address, uint8_t *out,
 
 static const uint8_t const HEXDIGITS[] = "0123456789abcdef";
 
-void getTTCAddressStringFromKey(cx_ecfp_public_key_t *publicKey, uint8_t *out,
+void getMaroAddressStringFromKey(cx_ecfp_public_key_t *publicKey, uint8_t *out,
                                 cx_sha3_t *sha3Context) {
     uint8_t hashAddress[32];
     cx_keccak_init(sha3Context, 256);
     cx_hash((cx_hash_t*)sha3Context, CX_LAST, publicKey->W + 1, 64, hashAddress, 32);
-    getTTCAddressStringFromBinary(hashAddress + 12, out, sha3Context);
+    getMaroAddressStringFromBinary(hashAddress + 12, out, sha3Context);
 }
 
-void getTTCAddressStringFromBinary(uint8_t *address, uint8_t *out,
+void getMaroAddressStringFromBinary(uint8_t *address, uint8_t *out,
                                    cx_sha3_t *sha3Context) {
     uint8_t hashChecksum[32];
     uint8_t tmp[100];
