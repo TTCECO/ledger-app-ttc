@@ -1,5 +1,5 @@
 /*******************************************************************************
-*   Ledger Ethereum App
+*   Ledger MARO App
 *   (c) 2016-2019 Ledger
 *
 *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,7 +23,7 @@
 #include "os.h"
 
 typedef enum chain_kind_e {
-	CHAIN_KIND_TTC
+	CHAIN_KIND_MARO
 } chain_kind_t;
 
 typedef struct chain_config_s {

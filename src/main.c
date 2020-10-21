@@ -1,5 +1,5 @@
 /*******************************************************************************
-*   Ledger TTC App
+*   Ledger MARO App
 *   (c) 2016-2019 Ledger
 *
 *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,8 +21,8 @@
 
 #include "os.h"
 #include "cx.h"
-#include "ttcUstream.h"
-#include "ttcUtils.h"
+#include "maroUstream.h"
+#include "maroUtils.h"
 #include "uint256.h"
 #include "tokens.h"
 #include "chainConfig.h"
@@ -77,7 +77,7 @@ void finalizeParsing(bool);
 #define OFFSET_LC 4
 #define OFFSET_CDATA 5
 
-#define WEI_TO_TTC 18
+#define WEI_TO_MARO 18
 
 static const uint8_t const TOKEN_TRANSFER_ID[] = { 0xa9, 0x05, 0x9c, 0xbb };
 static const uint8_t const VOTE_ID[] = { 0x75, 0x66, 0x6f, 0x3a };
@@ -193,7 +193,7 @@ const internalStorage_t N_storage_real;
 static const char const CONTRACT_ADDRESS[] = "New contract";
 
 static const char const SIGN_MAGIC[] = "\x19"
-                                       "TTC Signed Message:\n";
+                                       "MARO Signed Message:\n";
 
 chain_config_t *chainConfig;
 
@@ -1834,14 +1834,14 @@ tokenDefinition_t* getKnownToken() {
     uint32_t numTokens = 0;
     uint32_t i;
     switch(chainConfig->kind) {
-        case CHAIN_KIND_TTC:
-            numTokens = NUM_TOKENS_TTC;
+        case CHAIN_KIND_MARO:
+            numTokens = NUM_TOKENS_MARO;
             break;
     }
     for (i=0; i<numTokens; i++) {
         switch(chainConfig->kind) {
-            case CHAIN_KIND_TTC:
-                currentToken = (tokenDefinition_t *)PIC(&TOKENS_TTC[i]);
+            case CHAIN_KIND_MARO:
+                currentToken = (tokenDefinition_t *)PIC(&TOKENS_MARO[i]);
                 break;
         }
         if (os_memcmp(currentToken->address, tmpContent.txContent.destination, 20) == 0) {
@@ -2050,7 +2050,7 @@ void handleGetPublicKey(uint8_t p1, uint8_t p2, uint8_t *dataBuffer, uint16_t da
   os_memset(&privateKey, 0, sizeof(privateKey));
   os_memset(privateKeyData, 0, sizeof(privateKeyData));
   io_seproxyhal_io_heartbeat();
-  getTTCAddressStringFromKey(&tmpCtx.publicKeyContext.publicKey, tmpCtx.publicKeyContext.address, &sha3);
+  getMaroAddressStringFromKey(&tmpCtx.publicKeyContext.publicKey, tmpCtx.publicKeyContext.address, &sha3);
 #ifndef NO_CONSENT
   if (p1 == P1_NON_CONFIRM)
 #endif // NO_CONSENT
@@ -2093,7 +2093,7 @@ void finalizeParsing(bool direct) {
   uint256_t gasPrice, startGas, uint256;
   uint32_t i;
   uint8_t address[41];
-  uint8_t decimals = WEI_TO_TTC;
+  uint8_t decimals = WEI_TO_MARO;
   uint8_t *ticker = (uint8_t *)PIC(chainConfig->coinName);
   uint8_t *feeTicker = (uint8_t *)PIC(chainConfig->coinName);
   uint8_t tickerOffset = 0;
@@ -2149,7 +2149,7 @@ void finalizeParsing(bool direct) {
     }
   // Add address
   if (tmpContent.txContent.destinationLength != 0) {
-    getTTCAddressStringFromBinary(tmpContent.txContent.destination, address, &sha3);
+    getMaroAddressStringFromBinary(tmpContent.txContent.destination, address, &sha3);
     /*
     addressSummary[0] = '0';
     addressSummary[1] = 'x';
@@ -2169,7 +2169,7 @@ void finalizeParsing(bool direct) {
     os_memmove((void*)addressSummary, CONTRACT_ADDRESS, sizeof(CONTRACT_ADDRESS));
     strcpy(strings.common.fullAddress, "Contract");
   }
-  // Add amount in ttc or tokens
+  // Add amount in maro or tokens
   convertUint256BE(tmpContent.txContent.value.value, tmpContent.txContent.value.length, &uint256);
   tostring256(&uint256, 10, (char *)(G_io_apdu_buffer + 100), 100);
   i = 0;
@@ -2203,7 +2203,7 @@ void finalizeParsing(bool direct) {
   while (G_io_apdu_buffer[100 + i]) {
     i++;
   }
-  adjustDecimals((char *)(G_io_apdu_buffer + 100), i, (char *)G_io_apdu_buffer, 100, WEI_TO_TTC);
+  adjustDecimals((char *)(G_io_apdu_buffer + 100), i, (char *)G_io_apdu_buffer, 100, WEI_TO_MARO);
   i = 0;
   tickerOffset=0;
   while (feeTicker[tickerOffset]) {
@@ -2659,7 +2659,7 @@ chain_config_t const C_chain_config = {
 };
 
 __attribute__((section(".boot"))) int main(int arg0) {
-#ifdef USE_LIB_TTC
+#ifdef USE_LIB_MARO
     chain_config_t local_chainConfig;
     os_memmove(&local_chainConfig, &C_chain_config, sizeof(chain_config_t));
     unsigned int libcall_params[3];
@@ -2675,8 +2675,8 @@ __attribute__((section(".boot"))) int main(int arg0) {
         TRY {
             // ensure syscall will accept us
             check_api_level(CX_COMPAT_APILEVEL);
-            // delegate to TTC app/lib
-            libcall_params[0] = "TTC";
+            // delegate to maro app/lib
+            libcall_params[0] = "MARO";
             libcall_params[1] = 0x100; // use the Init call, as we won't exit
             libcall_params[2] = &local_chainConfig;
             os_lib_call(&libcall_params);

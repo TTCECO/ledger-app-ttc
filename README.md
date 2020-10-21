@@ -1,8 +1,8 @@
-# TTC wallet application for the Ledger Nano S
+# MARO wallet application for the Ledger Nano S
 
 ## Introduction
-This is the app for the [Ledger Nano S](https://www.ledgerwallet.com/products/ledger-nano-s) that makes it possible sign any transaction for the ttc network.
-the tansaction that can be signed include ttc transfer , erc20 token transfer and other contract transaction, especially,they also can sign vote transaction that special function in ttc network
+This is the app for the [Ledger Nano S](https://www.ledgerwallet.com/products/ledger-nano-s) that makes it possible sign any transaction for the maro network.
+the tansaction that can be signed include maro transfer , erc20 token transfer and other contract transaction, especially,they also can sign vote transaction that special function in maro network
 
 A companion [Javascript library](https://github.com/LedgerHQ/ledgerjs) is available to communicate with this app.
 

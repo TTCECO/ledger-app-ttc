@@ -1,5 +1,5 @@
 /*******************************************************************************
-*   Ledger TTC App
+*   Ledger MARO App
 *   (c) 2016-2019 Ledger
 *
 *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,8 +15,8 @@
 *  limitations under the License.
 ********************************************************************************/
 
-#ifndef _TTCUTILS_H_
-#define _TTCUTILS_H_
+#ifndef _MAROUTILS_H_
+#define _MAROUTILS_H_
 
 #include <stdint.h>
 
@@ -39,16 +39,16 @@ bool rlpDecodeLength(uint8_t *buffer, uint32_t bufferLength,
 
 bool rlpCanDecode(uint8_t *buffer, uint32_t bufferLength, bool *valid);
 
-void getTTCAddressFromKey(cx_ecfp_public_key_t *publicKey, uint8_t *out,
+void getMaroAddressFromKey(cx_ecfp_public_key_t *publicKey, uint8_t *out,
                                 cx_sha3_t *sha3Context);
 
-void getTTCAddressStringFromKey(cx_ecfp_public_key_t *publicKey, uint8_t *out,
+void getMaroAddressStringFromKey(cx_ecfp_public_key_t *publicKey, uint8_t *out,
                                 cx_sha3_t *sha3Context);
 
-void getTTCAddressStringFromBinary(uint8_t *address, uint8_t *out,
+void getMaroAddressStringFromBinary(uint8_t *address, uint8_t *out,
                                    cx_sha3_t *sha3Context);
 
 bool adjustDecimals(char *src, uint32_t srcLength, char *target,
                     uint32_t targetLength, uint8_t decimals);
 
-#endif /* _TTCUTILS_H_ */
+#endif /* _MAROUTILS_H_ */

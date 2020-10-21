@@ -1,5 +1,5 @@
 /*******************************************************************************
-*   Ledger Ethereum App
+*   Ledger MARO App
 *   (c) 2016-2019 Ledger
 *
 *  Licensed under the Apache License, Version 2.0 (the "License");
